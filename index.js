@@ -18,6 +18,9 @@ function searchBookmarks() {
     // Loop through the bookmarks and add them to the search results
     bookmarks.forEach((bookmark) => {
       const bookmarkLink = document.createElement("a");
+      bookmarkLink.classList.add("search-result");
+      // redirect to the bookmark url when clicked in new tab
+      bookmarkLink.target = "_blank";
       bookmarkLink.href = bookmark.url;
       bookmarkLink.textContent = bookmark.title;
       searchResults.appendChild(bookmarkLink);
