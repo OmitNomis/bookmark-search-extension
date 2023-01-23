@@ -13,6 +13,18 @@ function searchBookmarks() {
   // Use the chrome.bookmarks API to search through the bookmarks
   chrome.bookmarks.search(searchTerm, (bookmarks) => {
     // Clear the search results
+
+    // don't match folder names
+    bookmarks = bookmarks.filter((bookmark) => bookmark.url);
+
+    // hide search results if no search term
+    if (searchTerm === "") {
+      searchResults.style.display = "none";
+      return;
+    } else {
+      searchResults.style.display = "flex";
+    }
+
     searchResults.innerHTML = "";
 
     // Loop through the bookmarks and add them to the search results

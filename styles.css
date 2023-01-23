@@ -45,6 +45,6 @@
   padding: 10px 0;
   border-radius: 10px;
   background-color: white;
-  display: flex;
+  display: none;
   flex-direction: column;
 }
