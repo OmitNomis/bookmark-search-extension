@@ -39,8 +39,6 @@ function searchBookmarks() {
       return;
     }
 
-    // Loop through the bookmarks and add them to the search results
-
     //remove focus from search input and focus first result when down arrow is pressed
     searchInput.addEventListener("keydown", (e) => {
       if (e.key === "ArrowDown") {
@@ -48,20 +46,35 @@ function searchBookmarks() {
         searchInput.blur();
         // focus on first result
         searchResults.firstChild.focus();
+        // add selected class to first result
+        searchResults.firstChild.classList.add("selected");
       }
     });
+
+    // Loop through the bookmarks and add them to the search results
     bookmarks.forEach((bookmark) => {
       const bookmarkLink = document.createElement("a");
 
       // change focus to next result when down arrow is pressed
       bookmarkLink.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowDown") {
+        // if on last result, focus on search input
+        if (
+          e.key === "ArrowDown" &&
+          bookmarks.indexOf(bookmark) === bookmarks.length - 1
+        ) {
           // remove selected class from current result
           bookmarkLink.classList.remove("selected");
-          // add selected class to next result
-          bookmarkLink.nextSibling.classList.add("selected");
-          // focus on next result
-          bookmarkLink.nextSibling.focus();
+          // focus on search input
+          searchInput.focus();
+        } else {
+          if (e.key === "ArrowDown") {
+            // remove selected class from current result
+            bookmarkLink.classList.remove("selected");
+            // add selected class to next result
+            bookmarkLink.nextSibling.classList.add("selected");
+            // focus on next result
+            bookmarkLink.nextSibling.focus();
+          }
         }
       });
       // change focus to previous result when up arrow is pressed and back to search input when on first result
