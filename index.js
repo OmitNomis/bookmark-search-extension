@@ -27,7 +27,17 @@ function searchBookmarks() {
 
     searchResults.innerHTML = "";
 
+    // Show a message if no bookmarks are found
+    if (bookmarks.length === 0) {
+      const noResults = document.createElement("p");
+      noResults.classList.add("no-results");
+      noResults.textContent = "No bookmarks found";
+      searchResults.appendChild(noResults);
+      return;
+    }
+
     // Loop through the bookmarks and add them to the search results
+
     bookmarks.forEach((bookmark) => {
       const bookmarkLink = document.createElement("a");
       bookmarkLink.classList.add("search-result");
