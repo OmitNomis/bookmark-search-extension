@@ -41,11 +41,53 @@ function searchBookmarks() {
 
     // Loop through the bookmarks and add them to the search results
 
+    //remove focus from search input and focus first result when down arrow is pressed
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") {
+        // remove focus from search input
+        searchInput.blur();
+        // focus on first result
+        searchResults.firstChild.focus();
+      }
+    });
     bookmarks.forEach((bookmark) => {
       const bookmarkLink = document.createElement("a");
+
+      // change focus to next result when down arrow is pressed
+      bookmarkLink.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowDown") {
+          // remove selected class from current result
+          bookmarkLink.classList.remove("selected");
+          // add selected class to next result
+          bookmarkLink.nextSibling.classList.add("selected");
+          // focus on next result
+          bookmarkLink.nextSibling.focus();
+        }
+      });
+      // change focus to previous result when up arrow is pressed and back to search input when on first result
+      bookmarkLink.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowUp" && bookmarks.indexOf(bookmark) === 0) {
+          // remove selected class from current result
+          bookmarkLink.classList.remove("selected");
+          // focus on search input
+          searchInput.focus();
+        } else {
+          if (e.key === "ArrowUp") {
+            // remove selected class from current result
+            bookmarkLink.classList.remove("selected");
+            // add selected class to previous
+            bookmarkLink.previousSibling.classList.add("selected");
+            // focus on previous result
+            bookmarkLink.previousSibling.focus();
+          }
+        }
+      });
+
       bookmarkLink.classList.add("search-result");
       // redirect to the bookmark url when clicked in new tab
       bookmarkLink.target = "_blank";
+      // remove focus outline
+      bookmarkLink.style.outline = "none";
       bookmarkLink.href = bookmark.url;
       bookmarkLink.textContent = bookmark.title;
       searchResults.appendChild(bookmarkLink);

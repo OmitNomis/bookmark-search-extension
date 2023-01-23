@@ -1,12 +1,4 @@
-#overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
+/* Search Popup */
 #search-popup {
   background-color: white;
   padding: 20px;
@@ -24,7 +16,7 @@
   font-size: 14px;
   background-color: white;
   /* y padding */
-  padding: 10px 0;
+  padding: 10px;
   /* top and bottom border */
   border-bottom: 1px solid #ccc;
   text-decoration: none;
@@ -33,6 +25,12 @@
 /* remove a style from search-result */
 .search-result:last-child {
   border-bottom: none;
+}
+.search-result:hover {
+  background-color: #c5c2c2;
+}
+.selected {
+  background-color: #c5c2c2;
 }
 
 #search-input {
