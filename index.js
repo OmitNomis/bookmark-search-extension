@@ -5,6 +5,9 @@ const searchResults = document.getElementById("search-results");
 // Add an event listener to the search input to handle searches
 searchInput.addEventListener("input", searchBookmarks);
 
+//automatically focus on search input
+searchInput.focus();
+
 // Search function
 function searchBookmarks() {
   // Get the search term
