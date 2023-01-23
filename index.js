@@ -39,6 +39,13 @@ function searchBookmarks() {
       return;
     }
 
+    // open first result when enter is pressed if search input is focused
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        searchResults.firstChild.click();
+      }
+    });
+
     //remove focus from search input and focus first result when down arrow is pressed
     searchInput.addEventListener("keydown", (e) => {
       if (e.key === "ArrowDown") {
@@ -50,7 +57,6 @@ function searchBookmarks() {
         searchResults.firstChild.classList.add("selected");
       }
     });
-
     // Loop through the bookmarks and add them to the search results
     bookmarks.forEach((bookmark) => {
       const bookmarkLink = document.createElement("a");
