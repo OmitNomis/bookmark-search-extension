@@ -14,9 +14,11 @@
 }
 .search-result {
   font-size: 14px;
+  border-radius: 5px;
   background-color: white;
   /* y padding */
   padding: 10px;
+  margin-bottom: 5px;
   /* top and bottom border */
   border-bottom: 1px solid #ccc;
   text-decoration: none;
@@ -25,6 +27,7 @@
 /* remove a style from search-result */
 .search-result:last-child {
   border-bottom: none;
+  margin-bottom: 0;
 }
 .search-result:hover {
   background-color: #c5c2c2;
